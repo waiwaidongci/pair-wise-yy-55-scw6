@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Accidental, Formatter, Renderer, Stave, StaveNote, Voice } from 'vexflow'
 import type { AppDispatch, RootState } from '../store'
 import { addNote, redo, removeNote, selectNote, selectTrack, transposeTrack, undo, updateNote } from '../store'
+import { computeMeasures } from '../relayout'
 
 export default function ScoreEditor() {
   const dispatch = useDispatch<AppDispatch>()
@@ -20,18 +21,18 @@ export default function ScoreEditor() {
     const renderer = new Renderer(element, Renderer.Backends.SVG)
     renderer.resize(1060, 230)
     const context = renderer.getContext()
-    const measures = [track.notes.slice(0, 4), track.notes.slice(4, 8), track.notes.slice(8, 12)]
+    const measures = computeMeasures(track.notes).slice(0, 3)
     measures.forEach((measure, index) => {
       const stave = new Stave(index * 340, 22, 320).addClef(track.clef)
       if (index === 0) stave.addTimeSignature('4/4')
       stave.setContext(context).draw()
-      const staveNotes = measure.map((item) => {
+      const staveNotes = measure.notes.map((item) => {
         const staveNote = new StaveNote({ keys: [item.key], duration: item.duration })
         if (item.accidental) staveNote.addModifier(new Accidental(item.accidental), 0)
         return staveNote
       })
       if (staveNotes.length) {
-        const voice = new Voice({ num_beats: measure.reduce((sum, item) => sum + (item.duration === 'h' ? 2 : item.duration === 'q' ? 1 : .5), 0), beat_value: 4 })
+        const voice = new Voice({ num_beats: measure.beats, beat_value: 4 })
         voice.addTickables(staveNotes)
         new Formatter().joinVoices([voice]).format([voice], 275)
         voice.draw(context, stave)

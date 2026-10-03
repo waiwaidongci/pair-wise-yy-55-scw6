@@ -10,9 +10,9 @@ export const seedTracks: Track[] = [
 ]
 
 export const seedComments: ScoreComment[] = [
-  { id: 'CM-1', measure: 2, author: '指挥 · 方亦', content: '圆号第 2 小节进入需再弱一级，避免覆盖大提琴主题。', resolved: false },
-  { id: 'CM-2', measure: 3, author: '作曲 · 沈青', content: '第 3 小节末音增加延音线，与下一小节第一拍连奏。', resolved: false },
-  { id: 'CM-3', measure: 6, author: '出版 · 赵晴', content: '单簧管分谱需在换页处保留 2 小节提示音。', resolved: true },
+  { id: 'CM-1', measure: 2, partId: 'TR-03', author: '指挥 · 方亦', content: '圆号第 2 小节进入需再弱一级，避免覆盖大提琴主题。', resolved: false, reverted: false },
+  { id: 'CM-2', measure: 3, partId: 'TR-01', author: '作曲 · 沈青', content: '第 3 小节末音增加延音线，与下一小节第一拍连奏。', resolved: false, reverted: false },
+  { id: 'CM-3', measure: 6, partId: 'TR-02', author: '出版 · 赵晴', content: '单簧管分谱需在换页处保留 2 小节提示音。', resolved: true, reverted: false },
 ]
 
 export const seedVersions: ScoreVersion[] = [

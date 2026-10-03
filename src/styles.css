@@ -18,7 +18,16 @@ body { margin: 0; min-width: 320px; }
 .score-canvas-wrap svg { min-width:980px; }
 .note-strip { display:flex; gap:7px; overflow-x:auto; padding:10px 0; }.note-chip { min-width:55px; padding:8px; border:1px solid #dce2ea; background:#fff; border-radius:6px; cursor:pointer; text-align:center; }.note-chip.active { border-color:#2563eb; background:#eff6ff; box-shadow:0 0 0 2px #dbeafe; }
 .part-page { background:#fff; border:1px solid #d8dee7; border-radius:5px; padding:28px; min-height:520px; box-shadow:0 6px 18px #1018280d; }
-.part-measure { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:24px 0; }.part-note { border-bottom:1px solid #94a3b8; padding:8px 3px; text-align:center; font-family:serif; }
+.part-pages { display:flex; flex-direction:column; gap:0; }
+.part-measures { display:flex; flex-direction:column; gap:18px; margin:22px 0; }
+.part-measure { border:1px solid #e1e7ef; border-radius:6px; padding:10px 12px; background:#fbfcfe; }
+.measure-num { font-size:11px; color:#94a3b8; margin-bottom:6px; letter-spacing:1px; }
+.part-note-row { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+.part-note { border-bottom:1px solid #94a3b8; padding:8px 3px; text-align:center; font-family:serif; }
+.page-turn { display:flex; align-items:center; gap:14px; margin:6px 0; color:#64748b; }
+.page-turn-line { flex:1; height:1px; background:repeating-linear-gradient(90deg,#cbd5e1 0 6px,transparent 6px 12px); }
+.page-turn-body { display:flex; align-items:center; gap:8px; font-size:13px; white-space:nowrap; }
+.cue-block { margin:10px 0; padding:10px 12px; border-left:3px solid #2563eb; background:#eff6ff; border-radius:4px; font-size:13px; }
 .diff-row { display:grid; grid-template-columns:90px 1fr auto; gap:12px; align-items:center; padding:11px 0; border-bottom:1px solid #edf0f5; }
 @media(max-width:1050px){.score-grid{grid-template-columns:1fr}.metrics{grid-template-columns:1fr 1fr}}@media(max-width:620px){.page{padding:12px}.page-head{flex-direction:column}.metrics{grid-template-columns:1fr}.part-page{padding:16px;overflow:auto}.part-measure{min-width:620px}}
 @media print{.no-print{display:none!important}.ant-layout-sider,.ant-layout-header{display:none!important}.page{padding:0;max-width:none}.part-page{border:0;box-shadow:none}}
